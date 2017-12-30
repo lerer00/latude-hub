@@ -1,3 +1,6 @@
+const Listener = require('./app/services/listener');
+const CronJob = require('cron').CronJob;
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -18,6 +21,23 @@ app.use(function (req, res, next) {
 
 // Adding all routes.
 require('./app/routes')(app);
+
+// Start the blockchain listener.
+var listener = new Listener();
+var job = new CronJob({
+    cronTime: '*/8 * * * * *',
+    onTick: function () {
+        console.log('Availabilities are fetched.');
+        listener.updateAvailabilities();
+    },
+    onComplete: function () {
+        console.log('Availabilities job is stopped.');
+    },
+    start: false,
+    timeZone: 'America/Los_Angeles'
+});
+job.start();
+
 
 // Listening all incoming calls.
 const port = process.env.PORT || 3001;
