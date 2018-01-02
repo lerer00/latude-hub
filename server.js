@@ -25,7 +25,7 @@ require('./app/routes')(app);
 // Start the blockchain listener.
 var listener = new Listener();
 var job = new CronJob({
-    cronTime: '*/8 * * * * *',
+    cronTime: '*/10 * * * * *',
     onTick: function () {
         console.log('Availabilities are fetched.');
         listener.updateAvailabilities();
