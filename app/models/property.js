@@ -5,8 +5,8 @@ var Property = class Property extends Location {
         super();
         this.id = '';
         this.name = '';
-        this.description = '';
-        this.contractAddress = '';
+        this.active = false;
+        this.parent = '';
         this.comments = [];
         this.availabilities = [];
     }

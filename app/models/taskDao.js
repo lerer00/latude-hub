@@ -36,20 +36,31 @@ TaskDao.prototype = {
         self.client.queryDocuments(self.collection._self, querySpec).toArray(function (err, results) {
             if (err) {
                 callback(err);
-
             } else {
                 callback(null, results);
             }
         });
     },
 
+    findPromise: function (querySpec) {
+        var self = this;
+        return new Promise((resolve, reject) => {
+            self.client.queryDocuments(self.collection._self, querySpec).toArray(function (err, results) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    },
+
     insert: function (item, callback) {
         var self = this;
-        
+
         self.client.createDocument(self.collection._self, item, function (err, doc) {
             if (err) {
                 callback(err);
-
             } else {
                 callback(null, doc);
             }
@@ -62,7 +73,6 @@ TaskDao.prototype = {
         self.getItem(itemId, function (err, doc) {
             if (err) {
                 callback(err);
-
             } else {
                 doc.completed = true;
 
@@ -92,7 +102,6 @@ TaskDao.prototype = {
         self.client.queryDocuments(self.collection._self, querySpec).toArray(function (err, results) {
             if (err) {
                 callback(err);
-
             } else {
                 callback(null, results[0]);
             }
