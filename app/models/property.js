@@ -7,8 +7,6 @@ var Property = class Property extends Location {
         this.name = '';
         this.active = false;
         this.parent = '';
-        this.comments = [];
-        this.availabilities = [];
     }
 }
 

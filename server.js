@@ -28,21 +28,21 @@ var listener = new Listener();
 
 // Need to catch up
 setTimeout(() => {
-    listener.catchUp();
+    listener.catchUp(0);
 
-    // var job = new CronJob({
-    //     cronTime: '*/10 * * * * *',
-    //     onTick: function () {
-    //         console.log(colors.cyan('[i] Availabilities are fetched.'));
-    //         listener.updateAvailabilities();
-    //     },
-    //     onComplete: function () {
-    //         console.log(colors.cyan('[i] Availabilities job is stopped.'));
-    //     },
-    //     start: false,
-    //     timeZone: 'America/Los_Angeles'
-    // });
-    // job.start();
+    var job = new CronJob({
+        cronTime: '*/10 * * * * *',
+        onTick: function () {
+            console.log(colors.cyan('[i] Availabilities are fetched.'));
+            listener.listen();
+        },
+        onComplete: function () {
+            console.log(colors.cyan('[i] Availabilities job is stopped.'));
+        },
+        start: false,
+        timeZone: 'America/Los_Angeles'
+    });
+    job.start();
 }, 2000);
 
 

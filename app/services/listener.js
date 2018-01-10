@@ -3,11 +3,13 @@ const DocumentDbClient = require('documentdb').DocumentClient;
 const TaskDao = require('../models/taskDao');
 const uuidv4 = require('uuid/v4');
 const colors = require('colors');
-const Property = require('../models/property');
 const Company = require('../models/company');
+const Property = require('../models/property');
+const Asset = require('../models/asset');
 
 var companyFactoryAbi = require('../../build/contracts/CompanyFactory.json').abi;
 var companyAbi = require('../../build/contracts/Company.json').abi;
+var propertyAbi = require('../../build/contracts/Property.json').abi;
 
 // constructor
 function Listener() {
@@ -43,24 +45,24 @@ function Listener() {
 }
 
 // class methods
-Listener.prototype.catchUp = function () {
-    console.log(colors.cyan('[i] catching up!'));
-
+Listener.prototype.catchUp = function (fromBlock) {
     this.web3.eth.getBlockNumber()
         .then((number) => {
-            console.log(colors.cyan('[i] fetching past events up to current block: ' + number + '.'));
+            console.log(colors.cyan('[i] fetching past events to block: ' + number + '.'));
             if (number === this.lastBlockInspected)
-                return;
+                throw colors.yellow('[w] block already inspected.');
+
+            // Knowing that this block is mined every events will be taken from this point on.
+            this.lastBlockInspected = number;
 
             return this.companyFactoryInstance.getPastEvents('CompanyCreated', {
-                fromBlock: this.lastBlockInspected,
-                toBlock: number
+                fromBlock: fromBlock,
+                toBlock: 'latest'
             });
         }).then((events) => {
             console.log(colors.cyan('[i] persisting companies into storage.'))
             let promises = [];
             events.forEach(event => {
-                this.lastBlockInspected = Math.max(event.blockNumber, this.lastBlockInspected);
                 promises.push(this.persistCompanyIntoStorage(event));
             });
             return Promise.all(promises);
@@ -78,7 +80,7 @@ Listener.prototype.catchUp = function () {
         }).then((companies) => {
             let promises = [];
             companies.forEach(company => {
-                promises.push(this.getPropertiesFromCompanyContract(company.id));
+                promises.push(this.getPropertiesFromCompanyContract(fromBlock, company.id));
             });
             return Promise.all(promises);
         }).then((results) => {
@@ -104,36 +106,46 @@ Listener.prototype.catchUp = function () {
         }).then((properties) => {
             let promises = [];
             properties.forEach(property => {
-                promises.push(this.getAssetsFromCompanyContract(property.id));
+                promises.push(this.getAssetsFromPropertyContract(fromBlock, property.id));
             });
             return Promise.all(promises);
         }).then((results) => {
             console.log(colors.cyan('[i] persisting assets into storage.'))
-            console.log(results);
+            let promises = [];
+            results.forEach(assets => {
+                assets.forEach(event => {
+                    promises.push(this.persistAssetIntoStorage(event));
+                })
+            });
+            return Promise.all(promises);
+        }).then((results) => {
+            results.forEach(result => {
+                console.log(result.message);
+            });
         }).catch((error) => {
-            console.log(colors.red('[e] error catching up, ' + error));
+            console.log(error);
         }).finally(() => {
             console.log(colors.cyan('[i] we did catch up!'));
         });
 };
 
-Listener.prototype.getPropertiesFromCompanyContract = function (address) {
+Listener.prototype.getPropertiesFromCompanyContract = function (fromBlock, address) {
     return new Promise((resolve, reject) => {
         var companyInstance = new this.web3.eth.Contract(companyAbi, address);
-        // last block is causing error since it's already updated.
+        // last block is causing error since it's already updated.    
         resolve(companyInstance.getPastEvents('PropertyCreated', {
-            fromBlock: this.lastBlockInspected,
+            fromBlock: fromBlock,
             toBlock: 'latest'
         }));
     });
 }
 
-Listener.prototype.getAssetsFromPropertyContract = function (address) {
+Listener.prototype.getAssetsFromPropertyContract = function (fromBlock, address) {
     return new Promise((resolve, reject) => {
-        var companyInstance = new this.web3.eth.Contract(companyAbi, address);
+        var propertyInstance = new this.web3.eth.Contract(propertyAbi, address);
         // last block is causing error since it's already updated.
-        resolve(companyInstance.getPastEvents('PropertyCreated', {
-            fromBlock: this.lastBlockInspected,
+        resolve(propertyInstance.getPastEvents('AssetCreated', {
+            fromBlock: fromBlock,
             toBlock: 'latest'
         }));
     });
@@ -182,73 +194,51 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
             if (error !== null) {
                 if (error.code == 409) {
                     resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') })
-                    this.footsteps.properties[companyAddress] = true;
+                    this.footsteps.properties[propertyAddress] = true;
                 } else {
                     reject({ code: 0, message: colors.red('[e] error while inserting property: ' + propertyAddress + '.') });
                 }
             }
             else {
                 resolve({ code: 1, message: colors.green('[u] property ' + propertyAddress + ' was inserted successfully.') })
-                this.footsteps.properties[companyAddress] = true;
+                this.footsteps.properties[propertyAddress] = true;
             }
         });
     });
 }
 
-Listener.prototype.persistCompanyIntoStorage = function (event) {
+Listener.prototype.persistAssetIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
-        var companyAddress = event.returnValues.company;
-        if (this.footsteps.companies[companyAddress]) {
-            resolve({ code: 1, message: colors.yellow('[w] company ' + id + ' already exist.') })
+        var propertyAddress = event.address;
+        var assetAddress = event.returnValues.asset;
+        if (this.footsteps.assets[assetAddress]) {
+            resolve({ code: 1, message: colors.yellow('[w] asset ' + assetAddress + ' on property ' + propertyAddress + ' already exist.') })
         }
 
-        var company = new Company();
-        company.id = companyAddress;
-        company.active = true;
-        this.companiesDao.insert(company, (error, document) => {
+        var asset = new Asset();
+        asset.id = propertyAddress + '&' + assetAddress;
+        asset.parent = propertyAddress;
+        asset.active = true;
+        this.assetsDao.insert(asset, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {
-                    resolve({ code: 1, message: colors.yellow('[w] company ' + companyAddress + ' already exist.') })
-                    this.footsteps.companies[companyAddress] = true;
+                    resolve({ code: 1, message: colors.yellow('[w] asset ' + assetAddress + ' on property ' + propertyAddress + ' already exist.') })
+                    this.footsteps.assets[assetAddress] = true;
                 } else {
-                    reject({ code: 0, message: colors.red('[e] error while inserting company: ' + companyAddress + '.') });
+                    reject({ code: 0, message: colors.red('[e] error while inserting asset: ' + assetAddress + ' on property ' + propertyAddress + '.') });
                 }
             }
             else {
-                resolve({ code: 1, message: colors.green('[u] company ' + companyAddress + ' was inserted successfully.') })
-                this.footsteps.companies[companyAddress] = true;
+                resolve({ code: 1, message: colors.green('[u] asset ' + assetAddress + ' on property ' + propertyAddress + ' was inserted successfully.') })
+                this.footsteps.assets[assetAddress] = true;
             }
         });
     });
 }
 
-Listener.prototype.updateAvailabilities = function () {
-    // this.web3.eth.getBlockNumber()
-    //     .then((number) => {
-    //         console.log(colors.cyan('[i] Latest block: ' + number));
-    //         if (number === this.lastBlockInspected)
-    //             return;
-
-    //         return this.companyFactoryInstance.getPastEvents('CompanyCreated', {
-    //             fromBlock: this.lastBlockInspected,
-    //             toBlock: number
-    //         });
-    //     }).then((events) => {
-
-    //     }).catch(() => {
-    //         console.log('Catch callback!');
-    //     }).finally(() => {
-    //         console.log('Final callback!');
-    //     })
+Listener.prototype.listen = function () {
+    this.catchUp(this.lastBlockInspected + 1);
 };
-
-Listener.prototype.extractPropertiesFromCompany = function (id) {
-    // company instance
-    var companyInstance = new this.web3.eth.Contract(companyAbi, id);
-    companyInstance.methods.getProperties().call(function (error, result) {
-        console.log(colors.cyan('[i] Properties own by company: ' + id + ' are [' + result + ']'));
-    });
-}
 
 // export the class
 module.exports = Listener;
