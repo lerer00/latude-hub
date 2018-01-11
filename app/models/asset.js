@@ -4,6 +4,9 @@ var Asset = class Asset {
         this.name = '';
         this.active = false;
         this.parent = '';
+        this.timezone = '';
+        this.staysMap = {};
+        this.stays = []
     }
 }
 

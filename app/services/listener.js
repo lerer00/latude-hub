@@ -6,6 +6,7 @@ const colors = require('colors');
 const Company = require('../models/company');
 const Property = require('../models/property');
 const Asset = require('../models/asset');
+const Stay = require('../models/stay');
 
 var companyFactoryAbi = require('../../build/contracts/CompanyFactory.json').abi;
 var companyAbi = require('../../build/contracts/Company.json').abi;
@@ -36,8 +37,7 @@ function Listener() {
     this.footsteps = {
         companies: {},
         properties: {},
-        assets: {},
-        bookings: {}
+        assets: {}
     }
 
     // company factory instance
@@ -122,6 +122,32 @@ Listener.prototype.catchUp = function (fromBlock) {
             results.forEach(result => {
                 console.log(result.message);
             });
+
+            console.log(colors.cyan('[i] fetching stays for known properties.'));
+            var querySpec = {
+                query: 'SELECT * FROM root r WHERE r.active = true',
+                parameters: []
+            };
+            return this.propertiesDao.findPromise(querySpec);
+        }).then((properties) => {
+            let promises = [];
+            properties.forEach(property => {
+                promises.push(this.getStaysFromPropertyContract(fromBlock, property.id));
+            })
+            return Promise.all(promises);
+        }).then((results) => {
+            console.log(colors.cyan('[i] persisting stays into storage.'))
+            let promises = [];
+            results.forEach(stays => {
+                stays.forEach(event => {
+                    promises.push(this.persistStayIntoStorage(event));
+                })
+            });
+            return Promise.all(promises);
+        }).then((results) => {
+            results.forEach(result => {
+                console.log(result.message);
+            });
         }).catch((error) => {
             console.log(error);
         }).finally(() => {
@@ -145,6 +171,17 @@ Listener.prototype.getAssetsFromPropertyContract = function (fromBlock, address)
         var propertyInstance = new this.web3.eth.Contract(propertyAbi, address);
         // last block is causing error since it's already updated.
         resolve(propertyInstance.getPastEvents('AssetCreated', {
+            fromBlock: fromBlock,
+            toBlock: 'latest'
+        }));
+    });
+}
+
+Listener.prototype.getStaysFromPropertyContract = function (fromBlock, address) {
+    return new Promise((resolve, reject) => {
+        var propertyInstance = new this.web3.eth.Contract(propertyAbi, address);
+        // last block is causing error since it's already updated.
+        resolve(propertyInstance.getPastEvents('StayCreated', {
             fromBlock: fromBlock,
             toBlock: 'latest'
         }));
@@ -210,28 +247,70 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
 Listener.prototype.persistAssetIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
         var propertyAddress = event.address;
-        var assetAddress = event.returnValues.asset;
-        if (this.footsteps.assets[assetAddress]) {
-            resolve({ code: 1, message: colors.yellow('[w] asset ' + assetAddress + ' on property ' + propertyAddress + ' already exist.') })
+        var rawAssetId = event.returnValues.asset;
+        var assetId = propertyAddress + '&' + event.returnValues.asset;
+        if (this.footsteps.assets[assetId]) {
+            resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') })
         }
 
         var asset = new Asset();
-        asset.id = propertyAddress + '&' + assetAddress;
+        asset.id = assetId;
         asset.parent = propertyAddress;
         asset.active = true;
         this.assetsDao.insert(asset, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {
-                    resolve({ code: 1, message: colors.yellow('[w] asset ' + assetAddress + ' on property ' + propertyAddress + ' already exist.') })
-                    this.footsteps.assets[assetAddress] = true;
+                    resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') })
+                    this.footsteps.assets[assetId] = true;
                 } else {
-                    reject({ code: 0, message: colors.red('[e] error while inserting asset: ' + assetAddress + ' on property ' + propertyAddress + '.') });
+                    reject({ code: 0, message: colors.red('[e] error while inserting asset: ' + rawAssetId + ' on property ' + propertyAddress + '.') });
                 }
             }
             else {
-                resolve({ code: 1, message: colors.green('[u] asset ' + assetAddress + ' on property ' + propertyAddress + ' was inserted successfully.') })
-                this.footsteps.assets[assetAddress] = true;
+                resolve({ code: 1, message: colors.green('[u] asset ' + rawAssetId + ' on property ' + propertyAddress + ' was inserted successfully.') })
+                this.footsteps.assets[assetId] = true;
             }
+        });
+    });
+}
+
+Listener.prototype.persistStayIntoStorage = function (event) {
+    return new Promise((resolve, reject) => {
+        var propertyAddress = event.address;
+        var assetId = event.returnValues.asset;
+        var stayId = event.returnValues.stay;
+
+        // fetch the current asset
+        this.assetsDao.get(propertyAddress + '&' + event.returnValues.asset, (error, asset) => {
+            if (error !== null) {
+                if (error.code == 404) {
+                    resolve({ code: 1, message: colors.yellow('[w] asset ' + assetId + ' on property ' + propertyAddress + ' cannot be found.') })
+                } else {
+                    resolve({ code: 1, message: colors.red('[e] error while retreiving asset: ' + assetId + ' on property ' + propertyAddress + '.') });
+                }
+            }
+
+            if (asset.staysMap[stayId]) {
+                resolve({ code: 1, message: colors.yellow('[w] stay ' + stayId + ' on asset ' + assetId + ' on property ' + propertyAddress + ' already exist.') })
+            }
+
+            // create the stay
+            var stay = new Stay();
+            stay.id = stayId;
+            stay.checkInUtc = stayId;
+            stay.checkOutUtc = 0;
+            asset.stays.push(stay);
+            asset.staysMap[stayId] = true;
+            
+            // update the asset with the new stay
+            this.assetsDao.update(asset, (error, document) => {
+                if (error !== null) {
+                    reject({ code: 0, message: colors.red('[e] error while inserting stay: ' + stayId + ' on asset ' + assetId + ' on property ' + propertyAddress + '.') });
+                }
+                else {
+                    resolve({ code: 1, message: colors.green('[u] stay ' + stayId + ' on asset ' + assetId + ' on property ' + propertyAddress + ' was inserted successfully.') })
+                }
+            });
         });
     });
 }

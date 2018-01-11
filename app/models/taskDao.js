@@ -67,23 +67,14 @@ TaskDao.prototype = {
         });
     },
 
-    update: function (itemId, callback) {
+    update: function (item, callback) {
         var self = this;
 
-        self.getItem(itemId, function (err, doc) {
+        self.client.replaceDocument(item._self, item, function (err, replaced) {
             if (err) {
                 callback(err);
             } else {
-                doc.completed = true;
-
-                self.client.replaceDocument(doc._self, doc, function (err, replaced) {
-                    if (err) {
-                        callback(err);
-
-                    } else {
-                        callback(null, replaced);
-                    }
-                });
+                callback(null, replaced);
             }
         });
     },

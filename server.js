@@ -33,11 +33,11 @@ setTimeout(() => {
     var job = new CronJob({
         cronTime: '*/10 * * * * *',
         onTick: function () {
-            console.log(colors.cyan('[i] Availabilities are fetched.'));
+            console.log(colors.cyan('[i] scanning for new events.'));
             listener.listen();
         },
         onComplete: function () {
-            console.log(colors.cyan('[i] Availabilities job is stopped.'));
+            console.log(colors.cyan('[i] stop listening.'));
         },
         start: false,
         timeZone: 'America/Los_Angeles'
