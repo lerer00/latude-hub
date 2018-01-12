@@ -192,7 +192,8 @@ Listener.prototype.persistCompanyIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
         var companyAddress = event.returnValues.company;
         if (this.footsteps.companies[companyAddress]) {
-            resolve({ code: 1, message: colors.yellow('[w] company ' + company + ' already exist.') })
+            resolve({ code: 1, message: colors.yellow('[w] company ' + company + ' already exist.') });
+            return;
         }
 
         var company = new Company();
@@ -201,14 +202,14 @@ Listener.prototype.persistCompanyIntoStorage = function (event) {
         this.companiesDao.insert(company, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {
-                    resolve({ code: 1, message: colors.yellow('[w] company ' + companyAddress + ' already exist.') })
+                    resolve({ code: 1, message: colors.yellow('[w] company ' + companyAddress + ' already exist.') });
                     this.footsteps.companies[companyAddress] = true;
                 } else {
                     reject({ code: 0, message: colors.red('[e] error while inserting company: ' + companyAddress + '.') });
                 }
             }
             else {
-                resolve({ code: 1, message: colors.green('[u] company ' + companyAddress + ' was inserted successfully.') })
+                resolve({ code: 1, message: colors.green('[u] company ' + companyAddress + ' was inserted successfully.') });
                 this.footsteps.companies[companyAddress] = true;
             }
         });
@@ -220,7 +221,8 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
         var companyAddress = event.address;
         var propertyAddress = event.returnValues.property;
         if (this.footsteps.properties[propertyAddress]) {
-            resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') })
+            resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') });
+            return;
         }
 
         var property = new Property();
@@ -230,7 +232,7 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
         this.propertiesDao.insert(property, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {
-                    resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') })
+                    resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') });
                     this.footsteps.properties[propertyAddress] = true;
                 } else {
                     reject({ code: 0, message: colors.red('[e] error while inserting property: ' + propertyAddress + '.') });
@@ -250,7 +252,8 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
         var rawAssetId = event.returnValues.asset;
         var assetId = propertyAddress + '&' + event.returnValues.asset;
         if (this.footsteps.assets[assetId]) {
-            resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') })
+            resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') });
+            return;
         }
 
         var asset = new Asset();
@@ -278,27 +281,30 @@ Listener.prototype.persistStayIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
         var propertyAddress = event.address;
         var assetId = event.returnValues.asset;
-        var stayId = event.returnValues.stay;
+        var stayId = event.returnValues.id;
 
         // fetch the current asset
         this.assetsDao.get(propertyAddress + '&' + event.returnValues.asset, (error, asset) => {
             if (error !== null) {
                 if (error.code == 404) {
                     resolve({ code: 1, message: colors.yellow('[w] asset ' + assetId + ' on property ' + propertyAddress + ' cannot be found.') })
+                    return;
                 } else {
                     resolve({ code: 1, message: colors.red('[e] error while retreiving asset: ' + assetId + ' on property ' + propertyAddress + '.') });
+                    return;
                 }
             }
 
             if (asset.staysMap[stayId]) {
                 resolve({ code: 1, message: colors.yellow('[w] stay ' + stayId + ' on asset ' + assetId + ' on property ' + propertyAddress + ' already exist.') })
+                return;
             }
-
+            
             // create the stay
             var stay = new Stay();
             stay.id = stayId;
             stay.checkInUtc = stayId;
-            stay.checkOutUtc = 0;
+            stay.duration = event.returnValues.duration;
             asset.stays.push(stay);
             asset.staysMap[stayId] = true;
             

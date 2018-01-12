@@ -30,6 +30,28 @@ TaskDao.prototype = {
         });
     },
 
+    init: function () {
+        var self = this;
+        return new Promise((resolve, reject) => {
+            documentDbUtils.getOrCreateDatabase(self.client, self.databaseId, function (err, db) {
+                if (err) {
+                    reject(err);
+                    return;
+                } else {
+                    self.database = db;
+                    documentDbUtils.getOrCreateCollection(self.client, self.database._self, self.collectionId, function (err, coll) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            self.collection = coll;
+                            resolve(true);
+                        }
+                    });
+                }
+            });
+        });
+    },
+
     find: function (querySpec, callback) {
         var self = this;
 
@@ -96,6 +118,20 @@ TaskDao.prototype = {
             } else {
                 callback(null, results[0]);
             }
+        });
+    },
+
+    clean: function (items) {
+        return new Promise((resolve, reject) => {
+            items.forEach(item => {
+                delete item._rid;
+                delete item._self;
+                delete item._etag;
+                delete item._attachments;
+                delete item._ts;
+            });
+
+            resolve(items);
         });
     }
 };

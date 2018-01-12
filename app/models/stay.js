@@ -1,8 +1,8 @@
 var Stay = class Stay {
     constructor() {
         this.id = '';
-        this.checkInUtc = null;
-        this.checkOutUtc = null;
+        this.checkInUtc = 0;
+        this.duration = 0;
     }
 }
 
