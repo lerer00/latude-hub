@@ -15,11 +15,25 @@ exports.get_companies = function (req, res) {
         };
         return companiesDao.findPromise(querySpec)
     }).then((rawCompanies) => {
-        return companiesDao.clean(rawCompanies);
+        return companiesDao.cleanArray(rawCompanies);
     }).then((companies) => {
         res.json(companies);
     }).catch((error) => {
-        res.json(new Error(1, 'error querying companies.'));
+        res.json(new Error(1, 'Error querying companies.'));
+    });
+};
+
+exports.get_company = function (req, res) {
+    companiesDao.init().then((result) => {
+        return companiesDao.getPromise(req.params.id);
+    }).then((rawCompany) => {
+        if (rawCompany === undefined)
+            throw new Error(404, 'The requested resource doesn\'t exist.');
+        return companiesDao.cleanObject(rawCompany);
+    }).then((company) => {
+        res.json(company);
+    }).catch((error) => {
+        res.status(error.id).json(error);
     });
 };
 

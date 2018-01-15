@@ -1,12 +1,12 @@
 var Location = require('./location');
 
-var Property = class Property extends Location {
+var Property = class Property {
     constructor() {
-        super();
         this.id = '';
         this.name = '';
         this.active = false;
         this.parent = '';
+        this.location = new Location();
     }
 }
 

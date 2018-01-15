@@ -121,7 +121,29 @@ TaskDao.prototype = {
         });
     },
 
-    clean: function (items) {
+    getPromise: function (id) {
+        var self = this;
+
+        var querySpec = {
+            query: 'SELECT * FROM root r WHERE r.id = @id',
+            parameters: [{
+                name: '@id',
+                value: id
+            }]
+        };
+
+        return new Promise((resolve, reject) => {
+            self.client.queryDocuments(self.collection._self, querySpec).toArray(function (error, results) {
+                if (error) {
+                    reject([]);
+                } else {
+                    resolve(results[0]);
+                }
+            });
+        });
+    },
+
+    cleanArray: function (items) {
         return new Promise((resolve, reject) => {
             items.forEach(item => {
                 delete item._rid;
@@ -132,6 +154,18 @@ TaskDao.prototype = {
             });
 
             resolve(items);
+        });
+    },
+
+    cleanObject: function (item) {
+        return new Promise((resolve, reject) => {
+            delete item._rid;
+            delete item._self;
+            delete item._etag;
+            delete item._attachments;
+            delete item._ts;
+
+            resolve(item);
         });
     }
 };

@@ -15,10 +15,24 @@ exports.get_assets = function (req, res) {
         };
         return assetsDao.findPromise(querySpec)
     }).then((rawAssets) => {
-        return assetsDao.clean(rawAssets);
+        return assetsDao.cleanArray(rawAssets);
     }).then((assets) => {
         res.json(assets);
     }).catch((error) => {
-        res.json(new Error(1, 'error querying assets.'));
+        res.json(new Error(1, 'Error querying assets.'));
+    });
+};
+
+exports.get_asset = function (req, res) {
+    assetsDao.init().then((result) => {
+        return assetsDao.getPromise(req.params.id);
+    }).then((rawAsset) => {
+        if (rawAsset === undefined)
+            throw new Error(404, 'The requested resource doesn\'t exist.');
+        return assetsDao.cleanObject(rawAsset);
+    }).then((asset) => {
+        res.json(asset);
+    }).catch((error) => {
+        res.status(error.id).json(error);
     });
 };
