@@ -1,6 +1,9 @@
 {
     "id": "0x90e63c3d53e0ea496845b7a03ec7548b70014a91",
     "name": "Viking horns",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "rating": 3.56,
+    "comments": [],
     "active": true,
     "parent": "0xf30F86618E80AB4EACc947413F62c57fB4fC4e04",
     "location": {

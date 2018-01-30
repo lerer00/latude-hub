@@ -1,6 +1,9 @@
 {
     "id": "0xf4b51b14b9ee30dc37ec970b50a486f37686e2a8",
     "name": "Bill's fur",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "rating": 3.56,
+    "comments": [],
     "active": true,
     "parent": "0xb794f5ea0ba39494ce839613fffba74279579268",
     "location": {

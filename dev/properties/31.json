@@ -1,6 +1,9 @@
 {
     "id": "0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98",
     "name": "Raven's defense",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "rating": 3.56,
+    "comments": [],
     "active": true,
     "parent": "0x281055afc982d96fab65b3a49cac8b878184cb16",
     "location": {
