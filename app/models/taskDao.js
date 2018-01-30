@@ -1,4 +1,3 @@
-var DocumentDBClient = require('documentdb').DocumentClient;
 var documentDbUtils = require('../utilities/documentDb');
 
 function TaskDao(documentDBClient, databaseId, collectionId) {
@@ -86,6 +85,19 @@ TaskDao.prototype = {
             } else {
                 callback(null, doc);
             }
+        });
+    },
+
+    insertPromise: function (item) {
+        var self = this;
+        return new Promise((resolve, reject) => {
+            self.client.createDocument(self.collection._self, item, function (error, document) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(document);
+                }
+            });
         });
     },
 

@@ -2,6 +2,7 @@ const rootController = require('../controllers/rootController');
 const companiesController = require('../controllers/companiesController');
 const propertiesController = require('../controllers/propertiesController');
 const assetsController = require('../controllers/assetsController');
+const availabilitiesController = require('../controllers/availabilitiesController');
 
 module.exports = function (app) {
   app.route('/')
@@ -21,4 +22,7 @@ module.exports = function (app) {
     .get(assetsController.get_assets);
   app.route('/assets/:id')
     .get(assetsController.get_asset);
+
+  app.route('/availabilities')
+    .get(availabilitiesController.get_availabilities);
 };

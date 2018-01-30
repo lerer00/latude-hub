@@ -1,0 +1,13 @@
+{
+    "id": "0x3d2e397f94e415d7773e72e44d5b5338a99e77d9",
+    "name": "Seahawk's legion",
+    "active": true,
+    "parent": "0x281055afc982d96fab65b3a49cac8b878184cb16",
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -122.12,
+            47.66
+        ]
+    }
+}

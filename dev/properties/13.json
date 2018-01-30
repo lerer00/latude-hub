@@ -1,0 +1,13 @@
+{
+    "id": "0xab7c74abc0c4d48d1bdad5dcb26153fc8780f83e",
+    "name": "Eagle wings",
+    "active": true,
+    "parent": "0xf30F86618E80AB4EACc947413F62c57fB4fC4e04",
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -122.12,
+            47.66
+        ]
+    }
+}

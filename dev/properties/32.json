@@ -1,0 +1,13 @@
+{
+    "id": "0xf27daff52c38b2c373ad2b9392652ddf433303c4",
+    "name": "Raider's fans",
+    "active": true,
+    "parent": "0x281055afc982d96fab65b3a49cac8b878184cb16",
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -122.12,
+            47.66
+        ]
+    }
+}

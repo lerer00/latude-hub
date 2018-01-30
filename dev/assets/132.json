@@ -1,0 +1,17 @@
+{
+    "id": "0xab7c74abc0c4d48d1bdad5dcb26153fc8780f83e&1",
+    "name": "",
+    "active": true,
+    "parent": "0xab7c74abc0c4d48d1bdad5dcb26153fc8780f83e",
+    "timezone": "",
+    "staysMap": {
+        "1516683600": true
+    },
+    "stays": [
+        {
+            "id": "1516683600",
+            "checkInUtc": "1516683600",
+            "duration": "2"
+        }
+    ]
+}

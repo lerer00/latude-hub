@@ -1,4 +1,5 @@
 const Listener = require('./app/services/listener');
+const Populate = require('./app/services/populate');
 const CronJob = require('cron').CronJob;
 const colors = require('colors');
 
@@ -20,30 +21,39 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Populate cosmosDb with dev data.
+var populate = new Populate();
+setTimeout(() => {
+    populate.assets('./dev/companies/', populate.companiesDao);
+    populate.assets('./dev/properties/', populate.propertiesDao);
+    populate.assets('./dev/assets/', populate.assetsDao);
+}, 2000);
+
+
 // Adding all routes.
 require('./app/routes')(app);
 
 // Start the blockchain listener.
-var listener = new Listener();
+// var listener = new Listener();
 
 // Need to catch up
-setTimeout(() => {
-    listener.catchUp(0);
+// setTimeout(() => {
+//     listener.catchUp(0);
 
-    var job = new CronJob({
-        cronTime: '*/10 * * * * *',
-        onTick: function () {
-            console.log(colors.cyan('[i] scanning for new events.'));
-            listener.listen();
-        },
-        onComplete: function () {
-            console.log(colors.cyan('[i] stop listening.'));
-        },
-        start: false,
-        timeZone: 'America/Los_Angeles'
-    });
-    job.start();
-}, 2000);
+//     var job = new CronJob({
+//         cronTime: '*/10 * * * * *',
+//         onTick: function () {
+//             console.log(colors.cyan('[i] scanning for new events.'));
+//             listener.listen();
+//         },
+//         onComplete: function () {
+//             console.log(colors.cyan('[i] stop listening.'));
+//         },
+//         start: false,
+//         timeZone: 'America/Los_Angeles'
+//     });
+//     job.start();
+// }, 2000);
 
 
 // Listening all incoming calls.
