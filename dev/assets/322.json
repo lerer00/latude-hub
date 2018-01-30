@@ -1,17 +1,11 @@
 {
     "id": "0xf27daff52c38b2c373ad2b9392652ddf433303c4&1",
-    "name": "",
+    "name": "Room Galilei",
     "active": true,
     "parent": "0xf27daff52c38b2c373ad2b9392652ddf433303c4",
     "timezone": "",
     "staysMap": {
-        "1516683600": true
     },
     "stays": [
-        {
-            "id": "1516683600",
-            "checkInUtc": "1516683600",
-            "duration": "2"
-        }
     ]
 }

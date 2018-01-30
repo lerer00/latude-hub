@@ -1,17 +1,11 @@
 {
     "id": "0x90e63c3d53e0ea496845b7a03ec7548b70014a91&0",
-    "name": "",
+    "name": "Room Morgan",
     "active": true,
     "parent": "0x90e63c3d53e0ea496845b7a03ec7548b70014a91",
     "timezone": "",
     "staysMap": {
-        "1516683600": true
     },
     "stays": [
-        {
-            "id": "1516683600",
-            "checkInUtc": "1516683600",
-            "duration": "2"
-        }
     ]
 }

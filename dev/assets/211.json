@@ -1,17 +1,11 @@
 {
     "id": "0x53d284357ec70ce289d6d64134dfac8e511c8a3d&0",
-    "name": "",
+    "name": "Room Brin",
     "active": true,
     "parent": "0x53d284357ec70ce289d6d64134dfac8e511c8a3d",
     "timezone": "",
     "staysMap": {
-        "1516683600": true
     },
     "stays": [
-        {
-            "id": "1516683600",
-            "checkInUtc": "1516683600",
-            "duration": "2"
-        }
     ]
 }

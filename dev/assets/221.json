@@ -1,17 +1,11 @@
 {
     "id": "0xf4b51b14b9ee30dc37ec970b50a486f37686e2a8&0",
-    "name": "",
+    "name": "Room Branson",
     "active": true,
     "parent": "0xf4b51b14b9ee30dc37ec970b50a486f37686e2a8",
     "timezone": "",
     "staysMap": {
-        "1516683600": true
     },
     "stays": [
-        {
-            "id": "1516683600",
-            "checkInUtc": "1516683600",
-            "duration": "2"
-        }
     ]
 }

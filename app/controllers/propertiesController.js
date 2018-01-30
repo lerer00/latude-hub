@@ -42,8 +42,9 @@ exports.get_properties = function (req, res) {
             if (radius < 0) {
                 throw "Radius need to be grater or equal than 0.";
             }
-            if (radius > 100000) {
-                throw "Radius need to be smaller than 100000.";
+            if (radius > 300000) {
+                // 300km maximum radius seems pretty fair.
+                throw "Radius need to be smaller than 300000.";
             }
         } catch (error) {
             res.status(403).json(new Error(1, error));

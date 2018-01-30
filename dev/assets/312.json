@@ -1,17 +1,11 @@
 {
     "id": "0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98&1",
-    "name": "",
+    "name": "Room Euclid",
     "active": true,
     "parent": "0xfbb1b73c4f0bda4f67dca266ce6ef42f520fbb98",
     "timezone": "",
     "staysMap": {
-        "1516683600": true
     },
     "stays": [
-        {
-            "id": "1516683600",
-            "checkInUtc": "1516683600",
-            "duration": "2"
-        }
     ]
 }
