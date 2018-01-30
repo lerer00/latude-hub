@@ -1,10 +1,12 @@
 const Error = require('../models/error');
-const DocumentDbClient = require('documentdb').DocumentClient;
+const { DocumentClient, DocumentBase } = require('documentdb')
 const TaskDao = require('../models/taskDao');
 
-var documentDbClient = new DocumentDbClient(process.env.DOCUMENT_DB_HOST, {
+const connectionPolicy = new DocumentBase.ConnectionPolicy();
+connectionPolicy.DisableSSLVerification = true;
+var documentDbClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
     masterKey: process.env.DOCUMENT_DB_KEY
-});
+}, connectionPolicy);
 var assetsDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
 
 exports.get_assets = function (req, res) {
