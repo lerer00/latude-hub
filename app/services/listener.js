@@ -1,5 +1,5 @@
 const Web3 = require('web3');
-const DocumentDbClient = require('documentdb').DocumentClient;
+const { DocumentClient, DocumentBase } = require('documentdb')
 const TaskDao = require('../models/taskDao');
 const uuidv4 = require('uuid/v4');
 const colors = require('colors');
@@ -14,23 +14,25 @@ var propertyAbi = require('../../build/contracts/Property.json').abi;
 
 // constructor
 function Listener() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
     this.lastBlockInspected = 0;
 
-    var documentDbClient = new DocumentDbClient(process.env.DOCUMENT_DB_HOST, {
+    const connectionPolicy = new DocumentBase.ConnectionPolicy();
+    connectionPolicy.DisableSSLVerification = true;
+    var documentClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
         masterKey: process.env.DOCUMENT_DB_KEY
-    });
+    }, connectionPolicy);
 
     // get/create the wanted database/collection properties tclient
-    this.propertiesDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'properties');
+    this.propertiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'properties');
     this.propertiesDao.init();
 
     // get/create the wanted database/collection companies client
-    this.companiesDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'companies');
+    this.companiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'companies');
     this.companiesDao.init();
 
     // get/create the wanted database/collection assets client
-    this.assetsDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
+    this.assetsDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
     this.assetsDao.init();
 
     // keep track of what companies, properties, assets and booking are already added.
@@ -227,7 +229,7 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
 
         var property = new Property();
         property.id = propertyAddress;
-        property.active = true; 
+        property.active = true;
         property.parent = companyAddress;
         property.location.type = "Point";
         property.location.coordinates = [-122.12, 47.66];
@@ -301,7 +303,7 @@ Listener.prototype.persistStayIntoStorage = function (event) {
                 resolve({ code: 1, message: colors.yellow('[w] stay ' + stayId + ' on asset ' + assetId + ' on property ' + propertyAddress + ' already exist.') })
                 return;
             }
-            
+
             // create the stay
             var stay = new Stay();
             stay.id = stayId;
@@ -309,7 +311,7 @@ Listener.prototype.persistStayIntoStorage = function (event) {
             stay.duration = event.returnValues.duration;
             asset.stays.push(stay);
             asset.staysMap[stayId] = true;
-            
+
             // update the asset with the new stay
             this.assetsDao.update(asset, (error, document) => {
                 if (error !== null) {

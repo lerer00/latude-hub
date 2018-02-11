@@ -14,46 +14,48 @@ dotenv.config();
 // Use the body parser for payload.
 app.use(bodyParser.json());
 
-// Allow cross origin from trusted source.
+// allow cross origin from trusted source
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-// Populate cosmosDb with dev data.
-var populate = new Populate();
-setTimeout(() => {
-    populate.assets('./dev/companies/', populate.companiesDao);
-    populate.assets('./dev/properties/', populate.propertiesDao);
-    populate.assets('./dev/assets/', populate.assetsDao);
-}, 2000);
+// populate cosmosDb with dev data
+// var populate = new Populate();
+// setTimeout(() => {
+//     populate.assets('./dev/companies/', populate.companiesDao);
+//     populate.assets('./dev/properties/', populate.propertiesDao);
+//     populate.assets('./dev/assets/', populate.assetsDao);
+// }, 2000);
 
 
-// Adding all routes.
+// adding all routes
 require('./app/routes')(app);
 
-// Start the blockchain listener.
-// var listener = new Listener();
+// start the blockchain listener
+var listener = new Listener();
 
-// Need to catch up
-// setTimeout(() => {
-//     listener.catchUp(0);
+// need to catch up
+setTimeout(() => {
+    // catching up from block 0
+    listener.catchUp(0);
 
-//     var job = new CronJob({
-//         cronTime: '*/10 * * * * *',
-//         onTick: function () {
-//             console.log(colors.cyan('[i] scanning for new events.'));
-//             listener.listen();
-//         },
-//         onComplete: function () {
-//             console.log(colors.cyan('[i] stop listening.'));
-//         },
-//         start: false,
-//         timeZone: 'America/Los_Angeles'
-//     });
-//     job.start();
-// }, 2000);
+    // run every 10 second
+    var job = new CronJob({
+        cronTime: '*/10 * * * * *',
+        onTick: function () {
+            console.log(colors.cyan('[i] scanning for new events.'));
+            listener.listen();
+        },
+        onComplete: function () {
+            console.log(colors.cyan('[i] stop listening.'));
+        },
+        start: false,
+        timeZone: 'America/Los_Angeles'
+    });
+    job.start();
+}, 2000);
 
 
 // Listening all incoming calls.

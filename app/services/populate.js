@@ -5,12 +5,9 @@ const TaskDao = require('../models/taskDao');
 function Populate() {
     const connectionPolicy = new DocumentBase.ConnectionPolicy();
     connectionPolicy.DisableSSLVerification = true;
-    var documentClient = new DocumentClient(process.env.DOCUMENT_DB_HOST,
-        {
-            masterKey: process.env.DOCUMENT_DB_KEY
-        },
-        connectionPolicy
-    );
+    var documentClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
+        masterKey: process.env.DOCUMENT_DB_KEY
+    }, connectionPolicy);
 
     // get/create the wanted database/collection companies client
     this.companiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'companies');
