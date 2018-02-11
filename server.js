@@ -29,15 +29,14 @@ app.use(function (req, res, next) {
 //     populate.assets('./dev/assets/', populate.assetsDao);
 // }, 2000);
 
-
 // adding all routes
 require('./app/routes')(app);
 
 // start the blockchain listener
 var listener = new Listener();
+listener.init().then((result) => {
+    console.log(colors.cyan('[i] storage collections correctly created.'));
 
-// need to catch up
-setTimeout(() => {
     // catching up from block 0
     listener.catchUp(0);
 
@@ -55,7 +54,7 @@ setTimeout(() => {
         timeZone: 'America/Los_Angeles'
     });
     job.start();
-}, 2000);
+})
 
 
 // Listening all incoming calls.

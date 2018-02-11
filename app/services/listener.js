@@ -14,26 +14,15 @@ var propertyAbi = require('../../build/contracts/Property.json').abi;
 
 // constructor
 function Listener() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    this.web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_URL));
     this.lastBlockInspected = 0;
 
+    // storage credentials
     const connectionPolicy = new DocumentBase.ConnectionPolicy();
     connectionPolicy.DisableSSLVerification = true;
     var documentClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
         masterKey: process.env.DOCUMENT_DB_KEY
     }, connectionPolicy);
-
-    // get/create the wanted database/collection properties tclient
-    this.propertiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'properties');
-    this.propertiesDao.init();
-
-    // get/create the wanted database/collection companies client
-    this.companiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'companies');
-    this.companiesDao.init();
-
-    // get/create the wanted database/collection assets client
-    this.assetsDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
-    this.assetsDao.init();
 
     // keep track of what companies, properties, assets and booking are already added.
     this.footsteps = {
@@ -44,6 +33,22 @@ function Listener() {
 
     // company factory instance
     this.companyFactoryInstance = new this.web3.eth.Contract(companyFactoryAbi, process.env.COMPANY_FACTORY_CONTRACT_ADDRESS);
+
+    // get/create the wanted database/collection client
+    this.companiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'companies');
+    this.propertiesDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'properties');
+    this.assetsDao = new TaskDao(documentClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
+}
+
+// init
+Listener.prototype.init = function () {
+    return this.companiesDao.init().then((result) => {
+        return this.propertiesDao.init();
+    }).then((result) => {
+        return this.assetsDao.init();
+    }).catch((error) => {
+        console.log(colors.red('[e] error creating cosmos collections.'));
+    });
 }
 
 // class methods
