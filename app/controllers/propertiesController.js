@@ -85,3 +85,7 @@ exports.get_property = function (req, res) {
         res.status(error.id).json(error);
     });
 };
+
+exports.post_property = function (req, res) {
+    // TODO manage property with the new authentication process...
+};

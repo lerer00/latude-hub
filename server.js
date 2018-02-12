@@ -41,19 +41,19 @@ listener.init().then((result) => {
     listener.catchUp(0);
 
     // run every 10 second
-    var job = new CronJob({
-        cronTime: '*/10 * * * * *',
-        onTick: function () {
-            console.log(colors.cyan('[i] scanning for new events.'));
-            listener.listen();
-        },
-        onComplete: function () {
-            console.log(colors.cyan('[i] stop listening.'));
-        },
-        start: false,
-        timeZone: 'America/Los_Angeles'
-    });
-    job.start();
+    // var job = new CronJob({
+    //     cronTime: '*/10 * * * * *',
+    //     onTick: function () {
+    //         console.log(colors.cyan('[i] scanning for new events.'));
+    //         listener.listen();
+    //     },
+    //     onComplete: function () {
+    //         console.log(colors.cyan('[i] stop listening.'));
+    //     },
+    //     start: false,
+    //     timeZone: 'America/Los_Angeles'
+    // });
+    // job.start();
 })
 
 
