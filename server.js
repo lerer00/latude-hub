@@ -18,7 +18,16 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+
+    //intercepts OPTIONS method
+    if (req.method === 'OPTIONS') {
+        //respond with 200
+        res.status(200).send({});
+    }
+    else {
+        //move on
+        next();
+    }
 });
 
 // populate cosmosDb with dev data

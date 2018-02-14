@@ -12,6 +12,7 @@ const authenticateMiddleware = require('../middleware/authenticateMiddleware');
 module.exports = function (app) {
   // anonymous calls
   app.route('/').get(rootController.api_greeter);
+  app.route('/authenticate').post(authenticationController.post_authenticate);
   app.route('/companies').get(companiesController.get_companies);
   app.route('/companies/:id').get(companiesController.get_company);
   app.route('/properties').get(propertiesController.get_properties);
@@ -19,7 +20,6 @@ module.exports = function (app) {
   app.route('/assets').get(assetsController.get_assets);
   app.route('/assets/:id').get(assetsController.get_asset);
   app.route('/availabilities').get(availabilitiesController.get_availabilities);
-  app.route('/authenticate').post(authenticationController.post_authenticate);
 
   // authorized calls
   app.use(authenticateMiddleware.authenticate);
