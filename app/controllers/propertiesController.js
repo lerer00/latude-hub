@@ -1,6 +1,7 @@
-const Error = require('../models/error');
 const { DocumentClient, DocumentBase } = require('documentdb')
+const Error = require('../models/error');
 const TaskDao = require('../models/taskDao');
+const Authorization = require('../services/authorization/authorization');
 
 const connectionPolicy = new DocumentBase.ConnectionPolicy();
 connectionPolicy.DisableSSLVerification = true;
@@ -87,5 +88,18 @@ exports.get_property = function (req, res) {
 };
 
 exports.post_property = function (req, res) {
-    // TODO manage property with the new authentication process...
+    var authorization = new Authorization();
+    authorization.isAllowedOnContract(req.params.id)
+        .then((ownerAddress) => {
+            if (req.user === ownerAddress.toLowerCase()) {
+                res.status(200).json({});
+            } else {
+                throw new Error(404, 'User is not allowed to modify this resource.');
+            }
+        }).catch((error) => {
+            if (error.id === undefined)
+                res.status(error.id).json(error);
+
+            res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
+        });
 };

@@ -23,5 +23,5 @@ module.exports = function (app) {
 
   // authorized calls
   app.use(authenticateMiddleware.authenticate);
-  app.route('/properties/id').post(propertiesController.post_property);
+  app.route('/properties/:id').post(propertiesController.post_property);
 };

@@ -24,7 +24,7 @@ exports.post_authenticate = function (req, res) {
     if (!match) {
         res.status(500).send({ err: 'Signature did not match.' });
     } else {
-        var token = jwt.sign({ user: req.body.addr }, 'latude', { expiresIn: "1d" });
+        var token = jwt.sign({ user: req.body.owner }, 'latude', { expiresIn: "1d" });
         res.status(200).send({ success: 1, token: token });
     }
 };
