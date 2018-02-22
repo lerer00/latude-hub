@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lerer00/latude-web-app-backend#readme",
   "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
     "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "colors": "^1.1.2",
