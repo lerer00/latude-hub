@@ -331,12 +331,7 @@ Listener.prototype.persistStayIntoStorage = function (event) {
 }
 
 Listener.prototype.listen = function () {
-    // var contract = new this.web3.eth.Contract(companyFactoryAbi, process.env.COMPANY_FACTORY_CONTRACT_ADDRESS);
-    // contract.on('CompanyCreated', {fromBlock: 0, toBlock: 'latest'}, (e,x) => {
-    //     console.log('ok');
-    //     console.log(e,x);
-    // })
-    // this.catchUp(this.lastBlockInspected + 1);
+    this.catchUp(this.lastBlockInspected + 1);
 };
 
 // export the class

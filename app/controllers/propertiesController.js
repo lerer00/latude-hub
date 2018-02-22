@@ -50,7 +50,7 @@ exports.get_properties = function (req, res) {
                 throw "Radius need to be smaller than 300000.";
             }
         } catch (error) {
-            res.status(403).json(new Error(1, error));
+            res.status(403).json(new Error(403, error));
             return;
         }
     } else {
@@ -69,7 +69,7 @@ exports.get_properties = function (req, res) {
     }).then((properties) => {
         res.json(properties);
     }).catch((error) => {
-        res.json(new Error(1, 'Error querying properties.'));
+        res.status(500).json(new Error(500, 'Error querying properties.'));
     });
 };
 
