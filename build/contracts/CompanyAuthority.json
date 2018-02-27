@@ -29,277 +29,493 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820e281b1259ce790e46a6cb6d6a9965a0352933e01a7a115a27db7d5ab031e5c8e0029",
-  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820e281b1259ce790e46a6cb6d6a9965a0352933e01a7a115a27db7d5ab031e5c8e0029",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820555a1d60277c6bb52a32dc8051b4c3af8c0d842ecf4a9d5467a34c91f3ca2b700029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820555a1d60277c6bb52a32dc8051b4c3af8c0d842ecf4a9d5467a34c91f3ca2b700029",
   "sourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;;;;;;;;107:118;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;189:4;213;206:11;;107:118;;;;;:::o",
   "source": "pragma solidity ^0.4.18;\r\n\r\nimport \"./Authorization.sol\";\r\n\r\ncontract CompanyAuthority is Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool) {\r\n        return true;\r\n    }\r\n}",
   "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\CompanyAuthority.sol",
   "ast": {
-    "attributes": {
-      "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
-      "exportedSymbols": {
-        "CompanyAuthority": [
-          241
-        ]
-      }
+    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
+    "exportedSymbols": {
+      "CompanyAuthority": [
+        241
+      ]
     },
-    "children": [
+    "id": 242,
+    "nodeType": "SourceUnit",
+    "nodes": [
       {
-        "attributes": {
-          "literals": [
-            "solidity",
-            "^",
-            "0.4",
-            ".18"
-          ]
-        },
         "id": 223,
-        "name": "PragmaDirective",
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
         "src": "0:24:2"
       },
       {
-        "attributes": {
-          "SourceUnit": 135,
-          "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
-          "file": "./Authorization.sol",
-          "scope": 242,
-          "symbolAliases": [
-            null
-          ],
-          "unitAlias": ""
-        },
+        "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+        "file": "./Authorization.sol",
         "id": 224,
-        "name": "ImportDirective",
-        "src": "28:29:2"
+        "nodeType": "ImportDirective",
+        "scope": 242,
+        "sourceUnit": 135,
+        "src": "28:29:2",
+        "symbolAliases": [],
+        "unitAlias": ""
       },
       {
-        "attributes": {
-          "contractDependencies": [
-            13
-          ],
-          "contractKind": "contract",
-          "documentation": null,
-          "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            241,
-            13
-          ],
-          "name": "CompanyAuthority",
-          "scope": 242
-        },
-        "children": [
+        "baseContracts": [
           {
-            "attributes": {
-              "arguments": [
-                null
-              ]
-            },
-            "children": [
-              {
-                "attributes": {
-                  "contractScope": null,
-                  "name": "Authority",
-                  "referencedDeclaration": 13,
-                  "type": "contract Authority"
-                },
-                "id": 225,
-                "name": "UserDefinedTypeName",
-                "src": "90:9:2"
+            "arguments": [],
+            "baseName": {
+              "contractScope": null,
+              "id": 225,
+              "name": "Authority",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 13,
+              "src": "90:9:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Authority_$13",
+                "typeString": "contract Authority"
               }
-            ],
+            },
             "id": 226,
-            "name": "InheritanceSpecifier",
+            "nodeType": "InheritanceSpecifier",
             "src": "90:9:2"
-          },
-          {
-            "attributes": {
-              "constant": true,
-              "implemented": true,
-              "isConstructor": false,
-              "modifiers": [
-                null
-              ],
-              "name": "canCall",
-              "payable": false,
-              "scope": 241,
-              "stateMutability": "view",
-              "superFunction": 12,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "caller",
-                      "scope": 240,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "type": "address"
-                        },
-                        "id": 227,
-                        "name": "ElementaryTypeName",
-                        "src": "124:7:2"
-                      }
-                    ],
-                    "id": 228,
-                    "name": "VariableDeclaration",
-                    "src": "124:14:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "target",
-                      "scope": 240,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "type": "address"
-                        },
-                        "id": 229,
-                        "name": "ElementaryTypeName",
-                        "src": "140:7:2"
-                      }
-                    ],
-                    "id": 230,
-                    "name": "VariableDeclaration",
-                    "src": "140:14:2"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "sig",
-                      "scope": 240,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "bytes4",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "bytes4",
-                          "type": "bytes4"
-                        },
-                        "id": 231,
-                        "name": "ElementaryTypeName",
-                        "src": "156:6:2"
-                      }
-                    ],
-                    "id": 232,
-                    "name": "VariableDeclaration",
-                    "src": "156:10:2"
-                  }
-                ],
-                "id": 233,
-                "name": "ParameterList",
-                "src": "123:44:2"
-              },
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "name": "",
-                      "scope": 240,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "bool",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "bool",
-                          "type": "bool"
-                        },
-                        "id": 234,
-                        "name": "ElementaryTypeName",
-                        "src": "189:4:2"
-                      }
-                    ],
-                    "id": 235,
-                    "name": "VariableDeclaration",
-                    "src": "189:4:2"
-                  }
-                ],
-                "id": 236,
-                "name": "ParameterList",
-                "src": "188:6:2"
-              },
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "functionReturnParameters": 236
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "argumentTypes": null,
-                          "hexvalue": "74727565",
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "lValueRequested": false,
-                          "subdenomination": null,
-                          "token": "bool",
-                          "type": "bool",
-                          "value": "true"
-                        },
-                        "id": 237,
-                        "name": "Literal",
-                        "src": "213:4:2"
-                      }
-                    ],
-                    "id": 238,
-                    "name": "Return",
-                    "src": "206:11:2"
-                  }
-                ],
-                "id": 239,
-                "name": "Block",
-                "src": "195:30:2"
-              }
-            ],
-            "id": 240,
-            "name": "FunctionDefinition",
-            "src": "107:118:2"
           }
         ],
+        "contractDependencies": [
+          13
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
         "id": 241,
-        "name": "ContractDefinition",
+        "linearizedBaseContracts": [
+          241,
+          13
+        ],
+        "name": "CompanyAuthority",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 239,
+              "nodeType": "Block",
+              "src": "195:30:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "74727565",
+                    "id": 237,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "213:4:2",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 236,
+                  "id": 238,
+                  "nodeType": "Return",
+                  "src": "206:11:2"
+                }
+              ]
+            },
+            "id": 240,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "canCall",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 228,
+                  "name": "caller",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "124:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 227,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "124:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 230,
+                  "name": "target",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "140:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 229,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 232,
+                  "name": "sig",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "156:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 231,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "123:44:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 236,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 235,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "189:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 234,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "189:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "188:6:2"
+            },
+            "scope": 241,
+            "src": "107:118:2",
+            "stateMutability": "view",
+            "superFunction": 12,
+            "visibility": "public"
+          }
+        ],
+        "scope": 242,
         "src": "61:167:2"
       }
     ],
+    "src": "0:228:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
+    "exportedSymbols": {
+      "CompanyAuthority": [
+        241
+      ]
+    },
     "id": 242,
-    "name": "SourceUnit",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 223,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+        "file": "./Authorization.sol",
+        "id": 224,
+        "nodeType": "ImportDirective",
+        "scope": 242,
+        "sourceUnit": 135,
+        "src": "28:29:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": [],
+            "baseName": {
+              "contractScope": null,
+              "id": 225,
+              "name": "Authority",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 13,
+              "src": "90:9:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Authority_$13",
+                "typeString": "contract Authority"
+              }
+            },
+            "id": 226,
+            "nodeType": "InheritanceSpecifier",
+            "src": "90:9:2"
+          }
+        ],
+        "contractDependencies": [
+          13
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 241,
+        "linearizedBaseContracts": [
+          241,
+          13
+        ],
+        "name": "CompanyAuthority",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 239,
+              "nodeType": "Block",
+              "src": "195:30:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "74727565",
+                    "id": 237,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "213:4:2",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 236,
+                  "id": 238,
+                  "nodeType": "Return",
+                  "src": "206:11:2"
+                }
+              ]
+            },
+            "id": 240,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "canCall",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 233,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 228,
+                  "name": "caller",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "124:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 227,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "124:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 230,
+                  "name": "target",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "140:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 229,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 232,
+                  "name": "sig",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "156:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 231,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "123:44:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 236,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 235,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 240,
+                  "src": "189:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 234,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "189:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "188:6:2"
+            },
+            "scope": 241,
+            "src": "107:118:2",
+            "stateMutability": "view",
+            "superFunction": 12,
+            "visibility": "public"
+          }
+        ],
+        "scope": 242,
+        "src": "61:167:2"
+      }
+    ],
     "src": "0:228:2"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-20T20:41:36.598Z"
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-02-27T02:12:18.876Z"
 }
