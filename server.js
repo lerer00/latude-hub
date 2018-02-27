@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // allow cross origin from trusted source
 app.use(function (req, res, next) {
     // only allow those origins
-    var allowedOrigins = [process.env.WEB_APP_URL, process.env.AMS_APP_URL];
+    var allowedOrigins = [process.env.WEB_APP_URL, process.env.AMS_APP_URL, process.env.BOO_APP_URL];
     var origin = req.headers.origin;
     if (allowedOrigins.indexOf(origin) > -1) {
         res.setHeader('Access-Control-Allow-Origin', origin);
