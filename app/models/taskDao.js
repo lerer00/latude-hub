@@ -113,6 +113,19 @@ TaskDao.prototype = {
         });
     },
 
+    updatePromise: function (item) {
+        var self = this;
+        return new Promise((resolve, reject) => {
+            self.client.replaceDocument(item._self, item, function (error, replaced) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(replaced);
+                }
+            });
+        });
+    },
+
     get: function (itemId, callback) {
         var self = this;
 

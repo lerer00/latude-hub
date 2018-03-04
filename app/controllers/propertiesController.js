@@ -75,7 +75,7 @@ exports.get_properties = function (req, res) {
 
 exports.get_property = function (req, res) {
     propertiesDao.init().then((result) => {
-        return propertiesDao.getPromise(req.params.id);
+        return propertiesDao.getPromise(req.params.id.toLowerCase());
     }).then((rawProperty) => {
         if (rawProperty === undefined)
             throw new Error(404, 'The requested resource doesn\'t exist.');
@@ -89,17 +89,28 @@ exports.get_property = function (req, res) {
 
 exports.post_property = function (req, res) {
     var authorization = new Authorization();
-    authorization.isAllowedOnContract(req.params.id)
-        .then((ownerAddress) => {
-            if (req.user === ownerAddress.toLowerCase()) {
-                res.status(200).json({});
-            } else {
-                throw new Error(404, 'User is not allowed to modify this resource.');
-            }
-        }).catch((error) => {
-            if (error.id === undefined)
-                res.status(error.id).json(error);
+    authorization.isAllowedOnContract(req.params.id).then((ownerAddress) => {
+        if (req.user === ownerAddress.toLowerCase()) {
+            // todo: update the property with the new stay
+            return propertiesDao.init();
+        } else {
+            throw new Error(404, 'User is not allowed to modify this resource.');
+        }
+    }).then((result) => {
+        return propertiesDao.getPromise(req.params.id.toLowerCase());
+    }).then((result) => {
+        // todo: merge the two but only for allowed properties
+        result.name = req.body.name;
+        result.description = req.body.description;
+        
+        return propertiesDao.updatePromise(result);
+    }).then((result) => {
+        res.status(200).json({});
+    }).catch((error) => {
+        console.log(error);
+        if (error.id === undefined)
+            res.status(error.id).json(error);
 
-            res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
-        });
+        res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
+    });
 };

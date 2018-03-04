@@ -197,7 +197,7 @@ Listener.prototype.getStaysFromPropertyContract = function (fromBlock, address) 
 
 Listener.prototype.persistCompanyIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
-        var companyAddress = event.returnValues.company;
+        var companyAddress = event.returnValues.company.toLowerCase();
         if (this.footsteps.companies[companyAddress]) {
             resolve({ code: 1, message: colors.yellow('[w] company ' + company + ' already exist.') });
             return;
@@ -225,8 +225,8 @@ Listener.prototype.persistCompanyIntoStorage = function (event) {
 
 Listener.prototype.persistPropertyIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
-        var companyAddress = event.address;
-        var propertyAddress = event.returnValues.property;
+        var companyAddress = event.address.toLowerCase();
+        var propertyAddress = event.returnValues.property.toLowerCase();
         if (this.footsteps.properties[propertyAddress]) {
             resolve({ code: 1, message: colors.yellow('[w] property ' + propertyAddress + ' already exist.') });
             return;
@@ -257,7 +257,7 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
 
 Listener.prototype.persistAssetIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
-        var propertyAddress = event.address;
+        var propertyAddress = event.address.toLowerCase();
         var rawAssetId = event.returnValues.asset;
         var assetId = propertyAddress + '&' + event.returnValues.asset;
         if (this.footsteps.assets[assetId]) {
@@ -288,7 +288,7 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
 
 Listener.prototype.persistStayIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
-        var propertyAddress = event.address;
+        var propertyAddress = event.address.toLowerCase();
         var assetId = event.returnValues.asset;
         var stayId = event.returnValues.id;
 

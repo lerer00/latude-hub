@@ -27,7 +27,7 @@ exports.get_companies = function (req, res) {
 
 exports.get_company = function (req, res) {
     companiesDao.init().then((result) => {
-        return companiesDao.getPromise(req.params.id);
+        return companiesDao.getPromise(req.params.id.toLowerCase());
     }).then((rawCompany) => {
         if (rawCompany === undefined)
             throw new Error(404, 'The requested resource doesn\'t exist.');

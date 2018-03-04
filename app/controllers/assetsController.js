@@ -27,7 +27,7 @@ exports.get_assets = function (req, res) {
 
 exports.get_asset = function (req, res) {
     assetsDao.init().then((result) => {
-        return assetsDao.getPromise(req.params.id);
+        return assetsDao.getPromise(req.params.id.toLowerCase());
     }).then((rawAsset) => {
         if (rawAsset === undefined)
             throw new Error(404, 'The requested resource doesn\'t exist.');
