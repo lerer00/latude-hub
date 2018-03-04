@@ -102,6 +102,7 @@ exports.post_property = function (req, res) {
         // todo: merge the two but only for allowed properties
         result.name = req.body.name;
         result.description = req.body.description;
+        result.location = req.body.location;
         
         return propertiesDao.updatePromise(result);
     }).then((result) => {
