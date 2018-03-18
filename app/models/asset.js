@@ -2,10 +2,13 @@ var Asset = class Asset {
     constructor() {
         this.id = '';
         this.name = '';
+		this.description = '';
         this.active = false;
         this.parent = '';
         this.staysMap = {};
-        this.stays = []
+        this.stays = [];
+		this.price = 0;
+		this.currency = 'LAT';
     }
 }
 

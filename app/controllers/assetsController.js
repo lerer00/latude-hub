@@ -1,6 +1,7 @@
 const Error = require('../models/error');
 const { DocumentClient, DocumentBase } = require('documentdb')
 const TaskDao = require('../models/taskDao');
+const Authorization = require('../services/authorization/authorization');
 
 const connectionPolicy = new DocumentBase.ConnectionPolicy();
 connectionPolicy.DisableSSLVerification = true;
@@ -36,5 +37,34 @@ exports.get_asset = function (req, res) {
         res.json(asset);
     }).catch((error) => {
         res.status(error.id).json(error);
+    });
+};
+
+exports.post_asset = function (req, res) {
+    var authorization = new Authorization();
+    var propertyAddress = (req.params.id).split('&')[0];
+    authorization.isAllowedOnContract(propertyAddress).then((ownerAddress) => {
+        if (req.user === ownerAddress.toLowerCase()) {
+            // todo: update the property with the new stay
+            return assetsDao.init();
+        } else {
+            throw new Error(404, 'User is not allowed to modify this resource.');
+        }
+    }).then((result) => {
+        return assetsDao.getPromise(req.params.id.toLowerCase());
+    }).then((result) => {
+        // todo: merge the two but only for allowed properties
+        result.name = req.body.name;
+        result.description = req.body.description;
+        
+        return assetsDao.updatePromise(result);
+    }).then((result) => {
+        res.status(200).json({});
+    }).catch((error) => {
+        console.log(error);
+        if (error.id === undefined)
+            res.status(error.id).json(error);
+
+        res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
     });
 };

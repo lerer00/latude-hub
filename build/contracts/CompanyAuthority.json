@@ -29,14 +29,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820555a1d60277c6bb52a32dc8051b4c3af8c0d842ecf4a9d5467a34c91f3ca2b700029",
-  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820555a1d60277c6bb52a32dc8051b4c3af8c0d842ecf4a9d5467a34c91f3ca2b700029",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101128061001e6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820757137b4d45c3248c19019a5905b8b8a8f4a346576fb10d7a30d95e6384747780029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063b7009613146044575b600080fd5b3415604e57600080fd5b60bf600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919080357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191690602001909190505060d9565b604051808215151515815260200191505060405180910390f35b60006001905093925050505600a165627a7a72305820757137b4d45c3248c19019a5905b8b8a8f4a346576fb10d7a30d95e6384747780029",
   "sourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "61:167:2:-;;;;;;;;;;;;;;;;;;;;;;;;107:118;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;189:4;213;206:11;;107:118;;;;;:::o",
   "source": "pragma solidity ^0.4.18;\r\n\r\nimport \"./Authorization.sol\";\r\n\r\ncontract CompanyAuthority is Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool) {\r\n        return true;\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\CompanyAuthority.sol",
+  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-owner-portal\\contracts\\CompanyAuthority.sol",
   "ast": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/CompanyAuthority.sol",
     "exportedSymbols": {
       "CompanyAuthority": [
         241
@@ -57,7 +57,7 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+        "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
         "file": "./Authorization.sol",
         "id": 224,
         "nodeType": "ImportDirective",
@@ -274,7 +274,7 @@
     "src": "0:228:2"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/CompanyAuthority.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/CompanyAuthority.sol",
     "exportedSymbols": {
       "CompanyAuthority": [
         241
@@ -295,7 +295,7 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+        "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
         "file": "./Authorization.sol",
         "id": 224,
         "nodeType": "ImportDirective",
@@ -517,5 +517,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-02-27T02:12:18.876Z"
+  "updatedAt": "2018-03-17T22:27:10.640Z"
 }

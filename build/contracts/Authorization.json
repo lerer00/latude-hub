@@ -59,14 +59,14 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b33600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506103498061005f6000396000f300606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c08bf881461006757806313af40351461007c5780638da5cb5b146100b5578063bf7e214f1461010a575b600080fd5b341561007257600080fd5b61007a61015f565b005b341561008757600080fd5b6100b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506101f6565b005b34156100c057600080fd5b6100c86102d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561011557600080fd5b61011d6102f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101bb57600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561028e57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582097866294ec894c27d6cd76da6964a20dfe9b5ec822df9af14da232d3fb2a64b70029",
-  "deployedBytecode": "0x606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c08bf881461006757806313af40351461007c5780638da5cb5b146100b5578063bf7e214f1461010a575b600080fd5b341561007257600080fd5b61007a61015f565b005b341561008757600080fd5b6100b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506101f6565b005b34156100c057600080fd5b6100c86102d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561011557600080fd5b61011d6102f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101bb57600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561028e57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582097866294ec894c27d6cd76da6964a20dfe9b5ec822df9af14da232d3fb2a64b70029",
+  "bytecode": "0x6060604052341561000f57600080fd5b33600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506103498061005f6000396000f300606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c08bf881461006757806313af40351461007c5780638da5cb5b146100b5578063bf7e214f1461010a575b600080fd5b341561007257600080fd5b61007a61015f565b005b341561008757600080fd5b6100b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506101f6565b005b34156100c057600080fd5b6100c86102d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561011557600080fd5b61011d6102f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101bb57600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561028e57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820101d57d13827354563589be5dd7bf99cede4922c9aa913b7f8c947496d9be9290029",
+  "deployedBytecode": "0x606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680630c08bf881461006757806313af40351461007c5780638da5cb5b146100b5578063bf7e214f1461010a575b600080fd5b341561007257600080fd5b61007a61015f565b005b341561008757600080fd5b6100b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506101f6565b005b34156100c057600080fd5b6100c86102d2565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561011557600080fd5b61011d6102f8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101bb57600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561025257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561028e57600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820101d57d13827354563589be5dd7bf99cede4922c9aa913b7f8c947496d9be9290029",
   "sourceMap": "149:1074:0:-;;;241:69;;;;;;;;292:10;284:5;;:18;;;;;;;;;;;;;;;;;;149:1074;;;;;;",
   "deployedSourceMap": "149:1074:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;755:76;;;;;;;;;;;;;;318:130;;;;;;;;;;;;;;;;;;;;;;;;;;;;212:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;179:26;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;755:76;616:5;;;;;;;;;;;602:19;;:10;:19;;;594:28;;;;;;;;817:5;;;;;;;;;;;804:19;;;318:130;616:5;;;;;;;;;;;602:19;;:10;:19;;;594:28;;;;;;;;410:1;390:22;;:8;:22;;;;382:31;;;;;;;;432:8;424:5;;:16;;;;;;;;;;;;;;;;;;318:130;:::o;212:20::-;;;;;;;;;;;;;:::o;179:26::-;;;;;;;;;;;;;:::o",
   "source": "pragma solidity ^0.4.18;\r\n\r\ncontract Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool);\r\n}\r\n\r\ncontract Authorization {\r\n    Authority public authority;\r\n    address public owner;\r\n\r\n    function Authorization() public {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    function setOwner(address newOwner) onlyOwner public {\r\n        require(newOwner != address(0));\r\n        owner = newOwner;\r\n    }\r\n\r\n    function setAuthority(Authority newAuthority) internal {\r\n        authority = newAuthority;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner);\r\n        _;\r\n    }\r\n\r\n    modifier onlyAuthorized {\r\n        require(isAuthorized(msg.sender, msg.sig));\r\n        _;\r\n    }\r\n\r\n    function terminate() onlyOwner public {\r\n        selfdestruct(owner);\r\n    }\r\n\r\n    function isAuthorized(address caller, bytes4 sig) internal view returns (bool) {\r\n        if (caller == address(this)) {\r\n            return true;\r\n        } else if (caller == owner) {\r\n            return true;\r\n        } else if (authority == Authority(0)) {\r\n            return false;\r\n        } else {\r\n            return authority.canCall(caller, this, sig);\r\n        }\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\Authorization.sol",
+  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-owner-portal\\contracts\\Authorization.sol",
   "ast": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
     "exportedSymbols": {
       "Authority": [
         13
@@ -344,7 +344,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8736,
+                        "referencedDeclaration": 8683,
                         "src": "292:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -513,7 +513,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "382:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -797,7 +797,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8736,
+                            "referencedDeclaration": 8683,
                             "src": "602:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -851,7 +851,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "594:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -916,7 +916,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "706:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -945,7 +945,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "718:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1015,7 +1015,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1094,7 +1094,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8742,
+                      "referencedDeclaration": 8689,
                       "src": "804:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -1209,7 +1209,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 8749,
+                          "referencedDeclaration": 8696,
                           "src": "951:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Authorization_$134",
@@ -1418,7 +1418,7 @@
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 8749,
+                                  "referencedDeclaration": 8696,
                                   "src": "1191:4:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_contract$_Authorization_$134",
@@ -1723,7 +1723,7 @@
     "src": "0:1223:0"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
     "exportedSymbols": {
       "Authority": [
         13
@@ -2001,7 +2001,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8736,
+                        "referencedDeclaration": 8683,
                         "src": "292:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2170,7 +2170,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "382:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2454,7 +2454,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8736,
+                            "referencedDeclaration": 8683,
                             "src": "602:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -2508,7 +2508,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "594:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2573,7 +2573,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "706:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2602,7 +2602,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "718:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2672,7 +2672,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2751,7 +2751,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8742,
+                      "referencedDeclaration": 8689,
                       "src": "804:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -2866,7 +2866,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 8749,
+                          "referencedDeclaration": 8696,
                           "src": "951:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Authorization_$134",
@@ -3075,7 +3075,7 @@
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 8749,
+                                  "referencedDeclaration": 8696,
                                   "src": "1191:4:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_contract$_Authorization_$134",
@@ -3385,5 +3385,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-02-27T02:12:18.870Z"
+  "updatedAt": "2018-03-17T22:27:10.633Z"
 }

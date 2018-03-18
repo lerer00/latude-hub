@@ -259,6 +259,8 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
     return new Promise((resolve, reject) => {
         var propertyAddress = event.address.toLowerCase();
         var rawAssetId = event.returnValues.asset;
+        var assetPrice = event.returnValues.price;
+        var assetCurrency = event.returnValues.currency;
         var assetId = propertyAddress + '&' + event.returnValues.asset;
         if (this.footsteps.assets[assetId]) {
             resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') });
@@ -267,8 +269,10 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
 
         var asset = new Asset();
         asset.id = assetId;
-        asset.parent = propertyAddress;
         asset.active = true;
+        asset.parent = propertyAddress;
+        asset.price = assetPrice;
+        asset.currency = assetCurrency;
         this.assetsDao.insert(asset, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {

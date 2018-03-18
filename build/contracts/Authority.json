@@ -34,9 +34,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\r\n\r\ncontract Authority {\r\n    function canCall(address caller, address target, bytes4 sig) public view returns (bool);\r\n}\r\n\r\ncontract Authorization {\r\n    Authority public authority;\r\n    address public owner;\r\n\r\n    function Authorization() public {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    function setOwner(address newOwner) onlyOwner public {\r\n        require(newOwner != address(0));\r\n        owner = newOwner;\r\n    }\r\n\r\n    function setAuthority(Authority newAuthority) internal {\r\n        authority = newAuthority;\r\n    }\r\n\r\n    modifier onlyOwner() {\r\n        require(msg.sender == owner);\r\n        _;\r\n    }\r\n\r\n    modifier onlyAuthorized {\r\n        require(isAuthorized(msg.sender, msg.sig));\r\n        _;\r\n    }\r\n\r\n    function terminate() onlyOwner public {\r\n        selfdestruct(owner);\r\n    }\r\n\r\n    function isAuthorized(address caller, bytes4 sig) internal view returns (bool) {\r\n        if (caller == address(this)) {\r\n            return true;\r\n        } else if (caller == owner) {\r\n            return true;\r\n        } else if (authority == Authority(0)) {\r\n            return false;\r\n        } else {\r\n            return authority.canCall(caller, this, sig);\r\n        }\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-dev-portal\\contracts\\Authorization.sol",
+  "sourcePath": "C:\\Users\\Francis\\Desktop\\latude-owner-portal\\contracts\\Authorization.sol",
   "ast": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
     "exportedSymbols": {
       "Authority": [
         13
@@ -314,7 +314,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8736,
+                        "referencedDeclaration": 8683,
                         "src": "292:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -483,7 +483,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "382:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -767,7 +767,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8736,
+                            "referencedDeclaration": 8683,
                             "src": "602:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -821,7 +821,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "594:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -886,7 +886,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "706:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -915,7 +915,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "718:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -985,7 +985,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1064,7 +1064,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8742,
+                      "referencedDeclaration": 8689,
                       "src": "804:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -1179,7 +1179,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 8749,
+                          "referencedDeclaration": 8696,
                           "src": "951:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Authorization_$134",
@@ -1388,7 +1388,7 @@
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 8749,
+                                  "referencedDeclaration": 8696,
                                   "src": "1191:4:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_contract$_Authorization_$134",
@@ -1693,7 +1693,7 @@
     "src": "0:1223:0"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/Francis/Desktop/latude-dev-portal/contracts/Authorization.sol",
+    "absolutePath": "/C/Users/Francis/Desktop/latude-owner-portal/contracts/Authorization.sol",
     "exportedSymbols": {
       "Authority": [
         13
@@ -1971,7 +1971,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 8736,
+                        "referencedDeclaration": 8683,
                         "src": "292:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2140,7 +2140,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "382:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2424,7 +2424,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 8736,
+                            "referencedDeclaration": 8683,
                             "src": "602:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -2478,7 +2478,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "594:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2543,7 +2543,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "706:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2572,7 +2572,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 8736,
+                              "referencedDeclaration": 8683,
                               "src": "718:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2642,7 +2642,7 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8739,
+                      "referencedDeclaration": 8686,
                       "src": "685:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2721,7 +2721,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 8742,
+                      "referencedDeclaration": 8689,
                       "src": "804:12:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -2836,7 +2836,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 8749,
+                          "referencedDeclaration": 8696,
                           "src": "951:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Authorization_$134",
@@ -3045,7 +3045,7 @@
                                   "name": "this",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 8749,
+                                  "referencedDeclaration": 8696,
                                   "src": "1191:4:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_contract$_Authorization_$134",
@@ -3355,5 +3355,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-02-27T02:12:18.859Z"
+  "updatedAt": "2018-03-17T22:27:10.621Z"
 }
