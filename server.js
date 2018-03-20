@@ -1,5 +1,4 @@
 const Listener = require('./app/services/listener');
-const Populate = require('./app/services/populate');
 const CronJob = require('cron').CronJob;
 const colors = require('colors');
 
