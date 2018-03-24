@@ -1,5 +1,6 @@
 const Web3 = require('web3');
 const { DocumentClient, DocumentBase } = require('documentdb')
+const Helper = require('../utilities/helper');
 const TaskDao = require('../models/taskDao');
 const uuidv4 = require('uuid/v4');
 const colors = require('colors');
@@ -260,7 +261,7 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
         var propertyAddress = event.address.toLowerCase();
         var rawAssetId = event.returnValues.asset;
         var assetPrice = event.returnValues.price;
-        var assetCurrency = event.returnValues.currency;
+        var assetCurrency = Helper.toAscii(event.returnValues.currency);
         var assetId = propertyAddress + '&' + event.returnValues.asset;
         if (this.footsteps.assets[assetId]) {
             resolve({ code: 1, message: colors.yellow('[w] asset ' + rawAssetId + ' on property ' + propertyAddress + ' already exist.') });
