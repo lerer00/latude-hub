@@ -29,5 +29,6 @@ module.exports = function (app) {
   // authorized calls
   app.use(authenticateMiddleware.authenticate);
   app.route('/properties/:id').post(propertiesController.post_property);
+  app.route('/properties/:id/upload').post(propertiesController.post_property_upload);
   app.route('/assets/:id').post(assetsController.post_asset);
 };

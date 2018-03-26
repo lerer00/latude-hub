@@ -239,6 +239,7 @@ Listener.prototype.persistPropertyIntoStorage = function (event) {
         property.parent = companyAddress;
         property.location.type = "Point";
         property.location.coordinates = [-122.12, 47.66];
+        
         this.propertiesDao.insert(property, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {

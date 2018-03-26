@@ -91,7 +91,6 @@ exports.post_property = function (req, res) {
     var authorization = new Authorization();
     authorization.isAllowedOnContract(req.params.id).then((ownerAddress) => {
         if (req.user === ownerAddress.toLowerCase()) {
-            // todo: update the property with the new stay
             return propertiesDao.init();
         } else {
             throw new Error(404, 'User is not allowed to modify this resource.');
@@ -103,7 +102,35 @@ exports.post_property = function (req, res) {
         result.name = req.body.name;
         result.description = req.body.description;
         result.location = req.body.location;
-        
+        result.amenities = req.body.amenities;
+
+        return propertiesDao.updatePromise(result);
+    }).then((result) => {
+        res.status(200).json({});
+    }).catch((error) => {
+        console.log(error);
+        if (error.id === undefined)
+            res.status(error.id).json(error);
+
+        res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
+    });
+};
+
+exports.post_property_upload = function (req, res) {
+    // upload images how that work...
+
+    var authorization = new Authorization();
+    authorization.isAllowedOnContract(req.params.id).then((ownerAddress) => {
+        if (req.user === ownerAddress.toLowerCase()) {
+            return propertiesDao.init();
+        } else {
+            throw new Error(404, 'User is not allowed to modify this resource.');
+        }
+    }).then((result) => {
+        return propertiesDao.getPromise(req.params.id.toLowerCase());
+    }).then((result) => {
+        result.images = req.body.images;
+
         return propertiesDao.updatePromise(result);
     }).then((result) => {
         res.status(200).json({});
