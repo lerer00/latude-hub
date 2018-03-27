@@ -10,6 +10,16 @@ var documentDbClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
 }, connectionPolicy);
 var propertiesDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'properties');
 
+var multer = require('multer');
+var MulterAzureStorage = require('multer-azure-storage')
+var upload = multer({
+    storage: new MulterAzureStorage({
+        azureStorageConnectionString: process.env.BLOB_STORAGE,
+        containerName: process.env.BLOB_STORAGE_PHOTO_CONTAINER_NAME,
+        containerSecurity: 'blob'
+    })
+}).array('photos', 12);
+
 exports.get_properties = function (req, res) {
     var center;
     var radius;
@@ -106,10 +116,10 @@ exports.post_property = function (req, res) {
 
         return propertiesDao.updatePromise(result);
     }).then((result) => {
-        res.status(200).json({});
+        res.status(200).json();
     }).catch((error) => {
         console.log(error);
-        if (error.id === undefined)
+        if (error.id != undefined)
             res.status(error.id).json(error);
 
         res.status(500).json(new Error(500, 'Error retrieving authorizations.'));
@@ -117,8 +127,6 @@ exports.post_property = function (req, res) {
 };
 
 exports.post_property_upload = function (req, res) {
-    // upload images how that work...
-
     var authorization = new Authorization();
     authorization.isAllowedOnContract(req.params.id).then((ownerAddress) => {
         if (req.user === ownerAddress.toLowerCase()) {
@@ -127,16 +135,30 @@ exports.post_property_upload = function (req, res) {
             throw new Error(404, 'User is not allowed to modify this resource.');
         }
     }).then((result) => {
-        return propertiesDao.getPromise(req.params.id.toLowerCase());
-    }).then((result) => {
-        result.images = req.body.images;
+        upload(req, res, function (err) {
+            if (err) {
+                throw new Error(500, 'Error uploading images to storage.');
+                return
+            }
 
-        return propertiesDao.updatePromise(result);
-    }).then((result) => {
-        res.status(200).json({});
+            propertiesDao.getPromise(req.params.id.toLowerCase()).then((result) => {
+                req.files.forEach(file => {
+                    result.images.push(file.url);
+                });
+
+                return propertiesDao.updatePromise(result);
+            }).then((result) => {
+                res.status(200).json();
+            }).catch((error) => {
+                console.log(error);
+                if (error.id === undefined)
+                    res.status(error.id).json(error);
+
+                res.status(500).json(new Error(500, 'Error uploading images to storage.'));
+            });
+        });
     }).catch((error) => {
-        console.log(error);
-        if (error.id === undefined)
+        if (error.id != undefined)
             res.status(error.id).json(error);
 
         res.status(500).json(new Error(500, 'Error retrieving authorizations.'));

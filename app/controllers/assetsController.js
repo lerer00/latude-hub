@@ -59,7 +59,7 @@ exports.post_asset = function (req, res) {
         
         return assetsDao.updatePromise(result);
     }).then((result) => {
-        res.status(200).json({});
+        res.status(200).json();
     }).catch((error) => {
         console.log(error);
         if (error.id === undefined)
