@@ -1,5 +1,5 @@
 const Error = require('../models/error');
-const { DocumentClient, DocumentBase } = require('documentdb')
+const { DocumentClient, DocumentBase } = require('documentdb');
 const TaskDao = require('../models/taskDao');
 const Authorization = require('../services/authorization/authorization');
 
