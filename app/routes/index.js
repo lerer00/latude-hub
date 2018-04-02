@@ -7,6 +7,7 @@ const assetsController = require('../controllers/assetsController');
 const availabilitiesController = require('../controllers/availabilitiesController');
 const authenticationController = require('../controllers/authenticationController');
 const mailsController = require('../controllers/mailsController');
+const ratesController = require('../controllers/ratesController');
 
 // middleware
 const authenticateMiddleware = require('../middleware/authenticateMiddleware');
@@ -22,6 +23,7 @@ module.exports = function (app) {
   app.route('/assets').get(assetsController.get_assets);
   app.route('/assets/:id').get(assetsController.get_asset);
   app.route('/availabilities').get(availabilitiesController.get_availabilities);
+  app.route('/rates').get(ratesController.get_rates);
 
   sendgrid.init();
   app.route('/mails').post(mailsController.post_mail);
