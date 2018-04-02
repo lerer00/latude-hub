@@ -40,28 +40,28 @@ app.use(function (req, res, next) {
 require('./app/routes')(app);
 
 // start the blockchain listener
-var listener = new Listener();
-listener.init().then((result) => {
-    console.log(colors.cyan('[i] storage collections correctly created.'));
+// var listener = new Listener();
+// listener.init().then((result) => {
+//     console.log(colors.cyan('[i] storage collections correctly created.'));
 
-    // catching up from block 0
-    listener.catchUp(0);
+//     // catching up from block 0
+//     listener.catchUp(0);
 
-    // run every 10 second
-    var job = new CronJob({
-        cronTime: '*/60 * * * * *',
-        onTick: function () {
-            console.log(colors.cyan('[i] scanning for new events.'));
-            listener.listen();
-        },
-        onComplete: function () {
-            console.log(colors.cyan('[i] stop listening.'));
-        },
-        start: false,
-        timeZone: 'America/Los_Angeles'
-    });
-    job.start();
-})
+//     // run every 10 second
+//     var job = new CronJob({
+//         cronTime: '*/60 * * * * *',
+//         onTick: function () {
+//             console.log(colors.cyan('[i] scanning for new events.'));
+//             listener.listen();
+//         },
+//         onComplete: function () {
+//             console.log(colors.cyan('[i] stop listening.'));
+//         },
+//         start: false,
+//         timeZone: 'America/Los_Angeles'
+//     });
+//     job.start();
+// })
 
 
 // listening all incoming calls
