@@ -49,7 +49,7 @@ require('./app/routes')(app);
 
 //     // run every 10 second
 //     var job = new CronJob({
-//         cronTime: '*/60 * * * * *',
+//         cronTime: '*/10 * * * * *',
 //         onTick: function () {
 //             console.log(colors.cyan('[i] scanning for new events.'));
 //             listener.listen();
