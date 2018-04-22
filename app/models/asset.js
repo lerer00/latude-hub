@@ -7,6 +7,7 @@ var Asset = class Asset {
         this.parent = '';
         this.staysMap = {};
         this.stays = [];
+        this.amenities = [];
 		this.price = 0;
 		this.currency = 'LAT';
     }

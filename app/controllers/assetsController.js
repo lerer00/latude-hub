@@ -56,6 +56,7 @@ exports.post_asset = function (req, res) {
         // todo: merge the two but only for allowed properties
         result.name = req.body.name;
         result.description = req.body.description;
+        result.amenities = req.body.amenities;
         
         return assetsDao.updatePromise(result);
     }).then((result) => {
