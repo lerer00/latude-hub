@@ -28,7 +28,7 @@ exports.get_properties = function (req, res) {
 
     propertiesDao.init().then((result) => {
         var querySpec = {
-            query: 'SELECT * FROM root r WHERE r.active = true and ST_WITHIN(r.location, ' + JSON.stringify(req.query.geojson) + ')',
+            query: 'SELECT * FROM root r WHERE r.active = true and ST_WITHIN(r.location, ' + req.query.geojson + ')',
             parameters: []
         };
         return propertiesDao.findPromise(querySpec)
