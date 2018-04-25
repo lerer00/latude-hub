@@ -1,6 +1,7 @@
 var Asset = class Asset {
     constructor() {
         this.id = '';
+        this.type = -1;
         this.name = '';
 		this.description = '';
         this.active = false;

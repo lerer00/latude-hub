@@ -275,6 +275,7 @@ Listener.prototype.persistAssetIntoStorage = function (event) {
         asset.parent = propertyAddress;
         asset.price = assetPrice;
         asset.currency = assetCurrency;
+        asset.type = 0; // For now we are defaulting to a ROOM, this should be driven by the blockchain...
         this.assetsDao.insert(asset, (error, document) => {
             if (error !== null) {
                 if (error.code == 409) {
