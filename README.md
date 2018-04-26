@@ -1,4 +1,4 @@
-# latude hub
+#  🍕 latude hub
 
 Express API build on nodejs that is listening to the ethereum blockchain to be the source of truth and provide online travel agencies application to query properties, assets and availabilities within the lature network.
 
