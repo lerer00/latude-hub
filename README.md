@@ -2,22 +2,22 @@
 
 Express API build on nodejs that is listening to the ethereum blockchain to be the source of truth and provide online travel agencies application to query properties, assets and availabilities within the lature network.
 
-## How to Contribute
+### How to Contribute
 
 Any contributions are welcome!
 
-## Get & Build
+### Get & Build
 
 ```
 git clone https://github.com/lerer00/latude-hub.git
 npm install
 ```
 
-## Prerequisites
+### Prerequisites
 
 To run an instance locally you'll need deploy latude contracts on a local ethereum network. The easiest way is to start the [latude-owner-portal](https://github.com/lerer00/latude-owner-portal) project.
 
-## Developing locally
+### Developing locally
 
 Deploy latude contracts and run this command.
 
