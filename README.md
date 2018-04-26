@@ -15,6 +15,9 @@ npm install
 
 ### Prerequisites
 
+- CosmosDb emulator, this is our main georeferenced datastorage.
+- Azure storage emulator, this is where images are stored. 
+
 To run an instance locally you'll need deploy latude contracts on a local ethereum network. The easiest way is to start the [latude-owner-portal](https://github.com/lerer00/latude-owner-portal) project.
 
 ### Developing locally
