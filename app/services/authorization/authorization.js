@@ -1,6 +1,6 @@
 const Web3 = require('web3');
 
-var authorizationAbi = require('../../../build/contracts/Authorization.json').abi;
+var authorizationAbi = require('latude-contracts/build/contracts/Authorization.json').abi;
 
 function Authorization() {
     this.web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.RPC_URL));

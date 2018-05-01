@@ -9,9 +9,9 @@ const Property = require('../models/property');
 const Asset = require('../models/asset');
 const Stay = require('../models/stay');
 
-var companyFactoryAbi = require('../../build/contracts/CompanyFactory.json').abi;
-var companyAbi = require('../../build/contracts/Company.json').abi;
-var propertyAbi = require('../../build/contracts/Property.json').abi;
+var companyFactoryAbi = require('latude-contracts/build/contracts/CompanyFactory.json').abi;
+var companyAbi = require('latude-contracts/build/contracts/Company.json').abi;
+var propertyAbi = require('latude-contracts/build/contracts/Property.json').abi;
 
 // constructor
 function Listener() {
