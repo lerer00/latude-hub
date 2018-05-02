@@ -49,7 +49,7 @@ listener.init().then((result) => {
 
     // run every 10 second
     var job = new CronJob({
-        cronTime: '*/10 * * * * *',
+        cronTime: '*/60 * * * * *',
         onTick: function () {
             console.log(colors.cyan('[i] scanning for new events.'));
             listener.listen();
