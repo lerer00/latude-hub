@@ -1,10 +1,10 @@
 const Listener = require('./app/services/listener');
 const CronJob = require('cron').CronJob;
-const colors = require('colors');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const logger = require('heroku-logger')
 
 // using dotenv for environment variable when developing locally
 const dotenv = require('dotenv');
@@ -42,7 +42,7 @@ require('./app/routes')(app);
 // start the blockchain listener
 var listener = new Listener();
 listener.init().then((result) => {
-    console.log(colors.cyan('[i] storage collections correctly created.'));
+    logger.info('storage collections correctly created.');
 
     // catching up from block 0
     listener.catchUp(0);
@@ -51,11 +51,11 @@ listener.init().then((result) => {
     var job = new CronJob({
         cronTime: '*/60 * * * * *',
         onTick: function () {
-            console.log(colors.cyan('[i] scanning for new events.'));
+            logger.info('scanning for new events.')
             listener.listen();
         },
         onComplete: function () {
-            console.log(colors.cyan('[i] stop listening.'));
+            logger.info('stop listening.');
         },
         start: false,
         timeZone: 'America/Los_Angeles'

@@ -11,9 +11,11 @@ var documentDbClient = new DocumentClient(process.env.DOCUMENT_DB_HOST, {
 var assetsDao = new TaskDao(documentDbClient, process.env.DOCUMENT_DB_DATABASE_ID, 'assets');
 
 exports.get_assets = function (req, res) {
+    var property = req.query.property;
+
     assetsDao.init().then((result) => {
         var querySpec = {
-            query: 'SELECT * FROM root r WHERE r.active = true',
+            query: 'SELECT * FROM root r WHERE r.active = true and r.parent =\'' + property + '\'',
             parameters: []
         };
         return assetsDao.findPromise(querySpec)
@@ -45,7 +47,6 @@ exports.post_asset = function (req, res) {
     var propertyAddress = (req.params.id).split('&')[0];
     authorization.isAllowedOnContract(propertyAddress).then((ownerAddress) => {
         if (req.user === ownerAddress.toLowerCase()) {
-            // todo: update the property with the new stay
             return assetsDao.init();
         } else {
             throw new Error(404, 'User is not allowed to modify this resource.');
@@ -57,7 +58,7 @@ exports.post_asset = function (req, res) {
         result.name = req.body.name;
         result.description = req.body.description;
         result.amenities = req.body.amenities;
-        
+
         return assetsDao.updatePromise(result);
     }).then((result) => {
         res.status(200).json();

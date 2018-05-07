@@ -1,5 +1,4 @@
 const Error = require('../models/error');
-const colors = require('colors');
 var jwt = require('jsonwebtoken');
 
 exports.authenticate = function (req, res, next) {

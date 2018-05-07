@@ -1,4 +1,4 @@
-var Stay = class Stay {
+var Booking = class Booking {
     constructor() {
         this.id = '';
         this.checkInUtc = 0;
@@ -6,4 +6,4 @@ var Stay = class Stay {
     }
 }
 
-module.exports = Stay;
+module.exports = Booking;

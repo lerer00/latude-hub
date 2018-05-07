@@ -12,7 +12,6 @@ var Property = class Property {
         this.images = [];
         this.amenities = new Amenities();
         this.active = false;
-        this.parent = '';
         this.location = new Location();
     }
 }

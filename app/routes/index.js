@@ -1,7 +1,6 @@
 // route
 const sendgrid = require('../services/mail/sendgrid');
 const rootController = require('../controllers/rootController');
-const companiesController = require('../controllers/companiesController');
 const propertiesController = require('../controllers/propertiesController');
 const assetsController = require('../controllers/assetsController');
 const availabilitiesController = require('../controllers/availabilitiesController');
@@ -16,8 +15,6 @@ module.exports = function (app) {
   // anonymous calls
   app.route('/').get(rootController.api_greeter);
   app.route('/authenticate').post(authenticationController.post_authenticate);
-  app.route('/companies').get(companiesController.get_companies);
-  app.route('/companies/:id').get(companiesController.get_company);
   app.route('/properties').get(propertiesController.get_properties);
   app.route('/properties/:id').get(propertiesController.get_property);
   app.route('/assets').get(assetsController.get_assets);
