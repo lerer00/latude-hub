@@ -126,7 +126,7 @@ Listener.prototype.catchUp = async function (fromBlock) {
         let promises = [];
         results.forEach(bookings => {
             bookings.forEach(event => {
-                promises.push(this.persistBookingsIntoStorage(event));
+                promises.push(this.persistBookingIntoStorage(event));
             })
         });
         return Promise.all(promises);
