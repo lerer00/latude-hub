@@ -40,29 +40,28 @@ app.use(function (req, res, next) {
 require('./app/routes')(app);
 
 // start the blockchain listener
-var listener = new Listener();
-listener.init().then((result) => {
-    logger.info('storage collections correctly created.');
+// var listener = new Listener();
+// listener.init().then((result) => {
+//     logger.info('storage collections correctly created.');
 
-    // catching up from block 0
-    listener.catchUp(0);
+//     // catching up from block 0
+//     listener.catchUp(0);
 
-    // run every 10 second
-    var job = new CronJob({
-        cronTime: '*/60 * * * * *',
-        onTick: function () {
-            logger.info('scanning for new events.')
-            listener.listen();
-        },
-        onComplete: function () {
-            logger.info('stop listening.');
-        },
-        start: false,
-        timeZone: 'America/Los_Angeles'
-    });
-    job.start();
-})
-
+//     // run every 10 second
+//     var job = new CronJob({
+//         cronTime: '*/60 * * * * *',
+//         onTick: function () {
+//             logger.info('scanning for new events.')
+//             listener.listen();
+//         },
+//         onComplete: function () {
+//             logger.info('stop listening.');
+//         },
+//         start: false,
+//         timeZone: 'America/Los_Angeles'
+//     });
+//     job.start();
+// })
 
 // listening all incoming calls
 const port = process.env.PORT || 80;
