@@ -76,7 +76,6 @@ exports.post_property = function (req, res) {
     }).then((result) => {
         res.status(200).json();
     }).catch((error) => {
-        console.log(error);
         if (error.id != undefined)
             res.status(error.id).json(error);
 
@@ -108,7 +107,6 @@ exports.post_property_upload = function (req, res) {
             }).then((result) => {
                 res.status(200).json();
             }).catch((error) => {
-                console.log(error);
                 if (error.id === undefined)
                     res.status(error.id).json(error);
 

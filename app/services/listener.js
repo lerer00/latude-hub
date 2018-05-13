@@ -58,7 +58,6 @@ Listener.prototype.catchUp = async function (fromBlock) {
 
     var hex = '';
         for (var i = 0; i < 'CAD'.length; i++) { hex += '' + 'CAD'.charCodeAt(i).toString(16); }
-        console.log(`0x${hex}`);
 
     this.propertyFactoryInstance.getPastEvents('PropertyCreated', {
         fromBlock: fromBlock,
